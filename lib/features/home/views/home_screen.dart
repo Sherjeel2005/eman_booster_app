@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/widgets/gradient_background.dart';
-import '../../video/views/video_screen.dart';
+import '../../video/views/video_list.dart';
+import '../../video/views/video_player_page.dart';
 import '../category_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -149,8 +150,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               pageBuilder: (context, anim, _) =>
                                   FadeTransition(
                                     opacity: anim,
-                                    child: VideosScreen(
-                                        categoryName: category['name']!),
+                                    child: VideoListPage(
+                                        category: category['name']!),
                                   ),
                             ),
                           );
