@@ -130,6 +130,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     }
   }
 
+  //skip to
+
   void _skip() {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
