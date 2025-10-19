@@ -176,7 +176,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     return CategoryCard(
                       name: category['name']!,
                       urduName: category['urdu_name']!,
-                      imageAsset: 'assets/toba.jpg',
+                      imageAsset: category['image']!, // Changed this line to use individual images
+                      index: index,
                       onTap: () {
                         Navigator.push(
                           context,

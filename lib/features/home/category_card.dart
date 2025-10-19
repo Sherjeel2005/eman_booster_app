@@ -6,6 +6,7 @@ class CategoryCard extends StatelessWidget {
   final String urduName;
   final String imageAsset;
   final VoidCallback onTap;
+  final int index;
 
   const CategoryCard({
     super.key,
@@ -13,6 +14,7 @@ class CategoryCard extends StatelessWidget {
     required this.urduName,
     required this.imageAsset,
     required this.onTap,
+    required this.index,
   });
 
   @override
