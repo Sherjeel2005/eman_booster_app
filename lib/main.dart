@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'features/home/views/home_screen.dart';
+import 'features/home/views/SplashScreen.dart';
 
 void main() {
   runApp(const ProviderScope(child: EmaanBoosterApp()));
@@ -19,7 +19,7 @@ class EmaanBoosterApp extends StatelessWidget {
         colorSchemeSeed: Colors.teal,
         brightness: Brightness.dark,
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(), // Changed from HomeScreen to SplashScreen
     );
   }
 }

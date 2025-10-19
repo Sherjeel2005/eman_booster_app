@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import '../../../core/widgets/gradient_background.dart';
 import '../data/video_model.dart';
 import 'video_player_page.dart';
 
 class VideoListPage extends StatelessWidget {
   final String category;
-  VideoListPage({required this.category});
+  VideoListPage({required this.category, required String heroTag});
 
   @override
   Widget build(BuildContext context) {
