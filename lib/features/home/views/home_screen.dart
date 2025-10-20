@@ -34,6 +34,13 @@ class _HomeScreenState extends State<HomeScreen>
       vsync: this,
       duration: const Duration(seconds: 3),
     )..repeat(reverse: true);
+
+    // Precache all category images
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      for (var category in categories) {
+        precacheImage(AssetImage(category['image']!), context);
+      }
+    });
   }
 
   // Preserve state when navigating away
@@ -74,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen>
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3), // Reduced blur for performance
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
