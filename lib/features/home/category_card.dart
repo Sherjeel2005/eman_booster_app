@@ -26,14 +26,6 @@ class CategoryCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28),
-            image: DecorationImage(
-              image: AssetImage(imageAsset),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.2),
-                BlendMode.darken,
-              ),
-            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.15),
@@ -44,42 +36,66 @@ class CategoryCard extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(28),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        urduName,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.notoNastaliqUrdu(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
+            child:               Stack(
+              fit: StackFit.expand,
+              children: [
+                // Optimized image loading with aggressive caching
+                Image.asset(
+                  imageAsset,
+                  fit: BoxFit.cover,
+                  cacheWidth: 300, // Lower resolution for better performance
+                  cacheHeight: 300,
+                  filterQuality: FilterQuality.low,
+                  color: Colors.black.withOpacity(0.2),
+                  colorBlendMode: BlendMode.darken,
+                  gaplessPlayback: true,
+                  isAntiAlias: false, // Disable antialiasing for speed
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[800],
+                      child: const Icon(Icons.image_not_supported, color: Colors.white54),
+                    );
+                  },
+                ),
+                // Content layer
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            urduName,
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.notoNastaliqUrdu(
+                              color: Colors.white,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                      Text(
+                        name,
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    name,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      letterSpacing: 0.8,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
